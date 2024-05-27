@@ -1,11 +1,3 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 .form-body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
