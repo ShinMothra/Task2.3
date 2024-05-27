@@ -1,58 +1,96 @@
+/* style.css */
+
 body {
-    background-color:rgb(78, 201, 16);  
-    }
-  
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
 
+.form-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-    .form_item{
-        margin: 0px 0px 10px 0px;
-      }
-      .form_input{
-        height:50px;
-        border-radius:5px;
-        width:75%;
-        font-size:12px;
-        
-      }
-      .form_input2{
-        border-radius:5px;
-        width:75%;
-        font-size:12px;
-        height:150px;
-        
-      }
-      .checkbox_label{
-        font-size:12px;
-      }
-     .form-popup div input {
-        border: 1px solid #1906f2;
-    }
-    .form-popup div select {
-        border: 1px solid #1906f2;
-       
-    }
-    .form-popup div textarea {
-        border: 1px solid #1906f2;
-    }
-      .form_input._error{
-        box-shadow:0 0 15px #ff0000;
-      }
-     
-      textarea.form_input{
-        min-height:100px;
-      }
-     
-      .form_button{
-        margin-top: 20px;
-        margin-bottom:40px;
-        display: inline-block;
-        width: 75%;
-        background: transparent;
-        padding: 8px;
-        color:#1906f2;
-        border: 1px solid #1906f2;
-        border-radius: 5px;
-        text-align: center;
-        outline: none;
-        text-decoration: none;
-      }
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.form-input,
+.form-radio,
+.form-checkbox,
+.form-button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-input:focus,
+.form-radio:focus,
+.form-checkbox:focus,
+.form-button:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.form-button {
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    background-color: #0056b3;
+}
+
+.error {
+    color: red;
+    margin-top: 5px;
+}
+
+textarea.form-input {
+    resize: vertical;
+}
+
+select.form-input {
+    height: auto;
+}
+
+.form-radio,
+.form-checkbox {
+    width: auto;
+}
+
+.form-group.input-control {
+    position: relative;
+}
+
+.error {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    font-size: 0.8em;
+    color: red;
+}
