@@ -1,40 +1,24 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
 .form-body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
+  margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
 }
-
 .form-container {
   max-width: 600px;
-  width: 100%;
+  margin: 20px auto;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 .form-group {
   margin-bottom: 20px;
 }
-
 .form-label {
   font-weight: bold;
   resize: vertical;
 }
-
 .form-input {
   width: 100%;
   padding: 10px;
@@ -42,12 +26,10 @@ html, body {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
 .form-radio,
 .form-checkbox {
   margin-right: 10px;
 }
-
 .form-button {
   padding: 10px 20px;
   background-color: #4caf50;
@@ -56,7 +38,6 @@ html, body {
   border-radius: 4px;
   cursor: pointer;
 }
-
 .form-button:hover {
   background-color: #45a049;
 }
