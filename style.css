@@ -18,6 +18,9 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Установка максимальной ширины для адаптивности */
+    width: 100%; /* Ширина 100% для мобильных устройств */
+    overflow: auto; /* Добавление полос прокрутки */
 }
 
 h2 {
@@ -68,4 +71,11 @@ h2 {
 .error {
     color: red;
     margin-top: 5px;
+}
+
+/* Медиа-запросы для адаптивного дизайна */
+@media screen and (max-width: 600px) {
+    .form-container {
+        padding: 10px;
+    }
 }
