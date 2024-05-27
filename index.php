@@ -12,24 +12,62 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     print('Спасибо, результаты сохранены.');
   }
   // Включаем содержимое файла form.php.
-  include('form.php');
+  include('index.html');
   // Завершаем работу скрипта.
   exit();
 }
-// Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в БД.
+// Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 
 // Проверяем ошибки.
 $errors = FALSE;
-if (empty($_POST['fio'])) {
-  print('Заполните имя.<br/>');
+if (empty($_POST['name']) || !preg_match('/^[a-zA-Z\s]{1,150}$/', $_POST['name'])) {
+  print('Заполните ФИО.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
-  print('Заполните год.<br/>');
+if (empty($_POST['tel']) || !is_numeric($_POST['tel']) || !preg_match('/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/', $_POST['tel'])) {
+  print('Заполните телефон.<br/>');
   $errors = TRUE;
 }
 
+if (empty($_POST['email']) ||  !preg_match('/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/i', $_POST['email']) ) {
+  print('Заполните почту.<br/>');
+  $errors = TRUE;
+}
+
+if (empty($_POST['data']) ||  !preg_match('/^[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/', $_POST['data']) ) {
+  print('Заполните дату рождения.<br/>');
+  $errors = TRUE;
+}
+if (!isset($_POST['pol']) || !in_array($_POST['pol'], array('male', 'female'))) {
+  print('Выберете пол.<br/>');
+  $errors = TRUE;
+}
+
+$valid_languages = array("100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110");
+if (!isset($_POST['languages'])) {
+  print('Выберете языки.<br/>'); 
+  $errors = TRUE;
+} 
+else {
+    foreach ($_POST['languages'] as $langu) {
+        if ( !in_array($langu, $valid_languages)) {
+          print('Выберете языки.<br/>');
+          $errors = TRUE;
+          break;
+        }
+    }
+  }
+
+if (empty($_POST['bio']) ) {
+  print('Заполните биографию.<br/>');
+  $errors = TRUE;
+}
+
+if(!isset($_POST['agreement']) || $_POST['agreement'] != 'on') {
+  print('Отметьте чекбокс.<br/>');
+  $errors = TRUE;
+}
 
 // *************
 // Тут необходимо проверить правильность заполнения всех остальных полей.
@@ -42,15 +80,35 @@ if ($errors) {
 
 // Сохранение в базу данных.
 
-$user = 'db'; // Заменить на ваш логин uXXXXX
-$pass = '123'; // Заменить на пароль
-$db = new PDO('mysql:host=localhost;dbname=test', $user, $pass,
+$user = 'u67432'; // Заменить на ваш логин uXXXXX
+$pass = '5758640'; // Заменить на пароль, такой же, как от SSH
+$db = new PDO('mysql:host=localhost;dbname=u67432', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); // Заменить test на имя БД, совпадает с логином uXXXXX
 
 // Подготовленный запрос. Не именованные метки.
 try {
-  $stmt = $db->prepare("INSERT INTO application SET name = ?");
-  $stmt->execute([$_POST['fio']]);
+//  $stmt = $db->prepare("INSERT INTO application SET name = ?");
+//  $stmt->execute([$_POST['name']]);
+  $stmt = $db->prepare("INSERT INTO application (name, tel, email, data, pol, bio, agreement) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([
+        $_POST['name'],
+        $_POST['tel'],
+        $_POST['email'],
+        $_POST['data'],
+        $_POST['pol'],
+        $_POST['bio'],
+        $_POST['agreement']
+    ]);
+    $application_id = $db->lastInsertId();
+    foreach ($_POST['languages'] as $language) {
+      $stmt = $db->prepare("INSERT INTO programming_language (languages) VALUES (?)");
+      $stmt->execute([$language]);
+
+      $programming_language_id = $db->lastInsertId();
+
+      $stmt = $db->prepare("INSERT INTO application_programming_language (application_id, programming_language_id) VALUES (?, ?)");
+      $stmt->execute([$application_id, $programming_language_id]);
+    }
 }
 catch(PDOException $e){
   print('Error : ' . $e->getMessage());
