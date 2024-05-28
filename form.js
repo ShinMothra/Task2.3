@@ -59,15 +59,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const isChecked = check.checked;
 
     if (emailValue === "") {
-      setError(email, "Необходим email");
+      setError(email, "Требуется адрес электронной почты");
     } else if (!isValidEmail(emailValue)) {
-      setError(email, "Введен неверный email");
+      setError(email, "Введен неверный адрес электронной почты");
     } else {
       setSuccess(email);
     }
 
     if (nameValue === "") {
-      setError(userName, "Необходимо ФИО");
+      setError(userName, "Требуется ФИО");
     } else if (!isValidName(nameValue)) {
       setError(userName, "Введено неверное ФИО");
     } else {
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (phoneValue === "") {
-      setError(phone, "Необходим номер телефона");
+      setError(phone, "Требуется номер телефона");
     } else if (!isValidPhone(phoneValue)) {
       setError(phone, "Введен неверный номер телефона");
     } else {
@@ -83,13 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (dobValue === "") {
-      setError(dob, "Необходима дата рождения");
+      setError(dob, "Требуется дата рождения");
     } else {
       setSuccess(dob);
     }
 
     if (!genderValue) {
-      setError(gender[0], "Необходимо выбрать пол");
+      setError(gender[0], "Требуется указать пол");
     } else {
       setSuccess(gender[0]);
     }
@@ -97,20 +97,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!languagesValue) {
       setError(
         languages,
-        "Необходимо выбрать хотя бы один язык программирования"
+        "Требуется выбрать хотя бы один язык программирования"
       );
     } else {
       setSuccess(languages);
     }
 
     if (bioValue === "") {
-      setError(bio, "Необходимо заполнить биографию");
+      setError(bio, "Требуется заполнить биографию");
     } else {
       setSuccess(bio);
     }
 
     if (!isChecked) {
-      setError(check, "Необходимо согласие");
+      setError(check, "Требуется дать согласие");
     } else {
       setSuccess(check);
     }
