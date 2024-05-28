@@ -1,8 +1,8 @@
 <?php
-define('DB_HOST', 'localhost'); // Хост базы данных
-define('DB_USER', ' '); // Логин для подключения к базе данных
-define('DB_PASSWORD', ' '); // Пароль для подключения к базе данных
-define('DB_NAME', ' '); // Имя базы данных
+define('DB_HOST', 'u6744987'); // Хост базы данных
+define('DB_USER', 'u6744987'); // Логин для подключения к базе данных
+define('DB_PASSWORD', '8724697'); // Пароль для подключения к базе данных
+define('DB_NAME', 'u67442'); // Имя базы данных
 try {
     $db = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD,
         [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
