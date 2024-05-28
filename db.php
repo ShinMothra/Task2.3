@@ -1,8 +1,11 @@
 <?php
-// Подключение к базе данных
-include('db_credentials.php');
+$db_host = 'localhost';
+$db_name = 'u67442';
+$db_user = 'u67442';
+$db_password = '8724697';
+
 try {
-    $db = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD,
+    $db = new PDO('mysql:host=' . $db_host . ';dbname=' . $db_name, $db_user, $db_password,
         [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 } catch (PDOException $e) {
     echo 'Подключение не удалось: ' . $e->getMessage();
